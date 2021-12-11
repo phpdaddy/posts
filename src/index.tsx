@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material';
+import { createTheme, CssBaseline, responsiveFontSizes, ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
 
 let customTheme = createTheme({
     palette: {
@@ -10,37 +11,30 @@ let customTheme = createTheme({
             default: '#815656',
         },
         primary: {
-            main: '#7fb220',
-        },
-    },
-    components: {
-        MuiPaper: {
-            defaultProps: {
-                elevation: 3,
-            },
-            styleOverrides: {
-                root: {
-                    marginBottom: '10px',
-                    padding: '10px',
-                },
-            },
-        },
-        MuiLink: {
-            styleOverrides: {
-                root: {
-                    textDecoration: 'none',
-                },
-            },
+            main: '#412c2c',
         },
     },
 });
 
 customTheme = responsiveFontSizes(customTheme);
 
+const GlobalStyle = createGlobalStyle`
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <ThemeProvider theme={customTheme}>
+                <GlobalStyle />
+                <CssBaseline />
                 <App />
             </ThemeProvider>
         </BrowserRouter>

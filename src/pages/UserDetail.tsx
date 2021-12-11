@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User } from '../types/User';
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import { BackendUrl } from '../Constants';
 import { Post } from '../types/Post';
+import Paper from '../components/Paper';
 
 const Root = styled('div')``;
 

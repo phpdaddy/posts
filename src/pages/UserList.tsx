@@ -4,7 +4,7 @@ import axios from 'axios';
 import { User } from '../types/User';
 import { Link } from 'react-router-dom';
 import { BackendUrl } from '../Constants';
-import { Paper } from '@mui/material';
+import Paper from '../components/Paper';
 
 const Root = styled('div')``;
 

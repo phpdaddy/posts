@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Post } from '../types/Post';
 import { BackendUrl } from '../Constants';
-import { Paper, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import Paper from '../components/Paper';
 
 const Root = styled('div')``;
 
