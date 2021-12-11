@@ -1,1 +1,4 @@
-# posts
+# POSTS 
+### Scripts
+#### `yarn`
+#### `yarn start`
