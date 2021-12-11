@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import UserList from './pages/UserList';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import UserDetail from './pages/UserDetail';
-import { Typography } from '@mui/material';
+import { Container, CssBaseline } from '@mui/material';
 import PostsList from './pages/PostsList';
 import PostDetail from './pages/PostDetail';
 
-const Root = styled('div')``;
+const Root = styled('div')`
+    padding: 10px;
+`;
 
 const App = () => {
     return (
         <Root>
-            <Typography component="div">
+            <Container maxWidth="md">
+                <CssBaseline />
                 <Routes>
                     <Route path="/" element={<Navigate to="/users" />} />
                     <Route path="/users" element={<UserList />} />
@@ -20,7 +23,7 @@ const App = () => {
                     <Route path="/posts" element={<PostsList />} />
                     <Route path="/posts/:postId" element={<PostDetail />} />
                 </Routes>
-            </Typography>
+            </Container>
         </Root>
     );
 };

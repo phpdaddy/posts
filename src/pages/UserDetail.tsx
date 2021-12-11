@@ -2,27 +2,30 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User } from '../types/User';
-import { Paper as MuiPaper, Typography } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { Paper, Typography } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 import { BackendUrl } from '../Constants';
+import { Post } from '../types/Post';
 
 const Root = styled('div')``;
 
-const Paper = styled(MuiPaper)`
-    margin-bottom: 10px;
-    padding: 10px;
-`;
-
-const UserDetail = () => {
+export const UserDetail = () => {
     const [user, setUser] = useState<User | undefined>();
+    const [posts, setPosts] = useState<Post[]>([]);
+
     const params = useParams();
 
     useEffect(() => {
-        const call = async () => {
+        const fetchUser = async () => {
             const response = await axios.get(`${BackendUrl}/users/${params.userId}`);
             setUser(response.data);
         };
-        call();
+        fetchUser();
+        const fetchPosts = async () => {
+            const response = await axios.get(`${BackendUrl}/users/${params.userId}/posts`);
+            setPosts(response.data);
+        };
+        fetchPosts();
     }, []);
 
     return (
@@ -51,6 +54,17 @@ const UserDetail = () => {
                     </div>
                 </Paper>
             )}
+            <Typography variant="h5" sx={{ marginBottom: '10px', marginLeft: '10px' }}>
+                Author&apos;s posts
+            </Typography>
+            {posts.map((post) => (
+                <Paper key={`postItem${post.id}`} elevation={3}>
+                    <Typography variant="h6">
+                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                    </Typography>
+                    <div>{post.body}</div>
+                </Paper>
+            ))}
         </Root>
     );
 };

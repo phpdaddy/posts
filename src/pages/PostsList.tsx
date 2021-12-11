@@ -2,35 +2,34 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Post } from '../types/Post';
-import { Paper as MuiPaper } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { BackendUrl } from '../Constants';
+import { Paper, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Root = styled('div')``;
-
-const Paper = styled(MuiPaper)`
-    margin-bottom: 10px;
-    padding: 10px;
-`;
 
 const PostList = () => {
     const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
-        const call = async () => {
+        const fetchPosts = async () => {
             const response = await axios.get(`${BackendUrl}/posts`);
             setPosts(response.data);
         };
-        call();
+        fetchPosts();
     }, []);
 
     return (
         <Root>
             {posts.map((post) => (
-                <Paper elevation={3} key={`postItem${post.id}`}>
-                    <Link to={`/posts/${post.id}`}>{post.title}</Link>
-                    <div> {post.body}</div>
-                    <Link to={`/users/${post.userId}`}>Author</Link>
+                <Paper key={`postItem${post.id}`} elevation={3}>
+                    <Typography variant="h5">
+                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                    </Typography>
+                    <div>{post.body}</div>
+                    <div>
+                        <Link to={`/users/${post.userId}`}>Author</Link>
+                    </div>
                 </Paper>
             ))}
         </Root>
