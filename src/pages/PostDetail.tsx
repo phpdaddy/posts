@@ -32,7 +32,9 @@ const PostDetail = () => {
         <Root>
             {post && (
                 <Paper elevation={3} key={`postItem${post.id}`}>
-                    <Typography variant="h4">{post.title}</Typography>
+                    <Typography variant="h4">
+                        <strong>{post.title}</strong>
+                    </Typography>
                     <div>{post.body}</div>
                     <div>
                         <Link to={`/users/${post.userId}`}>Author</Link>
@@ -44,7 +46,9 @@ const PostDetail = () => {
             </Typography>
             {comments.map((comment) => (
                 <Paper key={`postItem${comment.id}`} elevation={3}>
-                    <Typography variant={'h6'}>{comment.name}</Typography>
+                    <Typography variant={'h6'}>
+                        <strong>{comment.name}</strong>
+                    </Typography>
                     <div>{comment.body}</div>
                     <strong>{comment.email}</strong>
                 </Paper>

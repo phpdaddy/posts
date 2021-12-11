@@ -25,12 +25,16 @@ const PostList = () => {
             {posts.map((post) => (
                 <Paper key={`postItem${post.id}`} elevation={3}>
                     <Typography variant="h5">
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        <Link to={`/posts/${post.id}`}>
+                            <strong>{post.title}</strong>
+                        </Link>
                     </Typography>
                     <div>{post.body}</div>
-                    <div>
-                        <Link to={`/users/${post.userId}`}>Author</Link>
-                    </div>
+                    <Typography>
+                        <Link to={`/users/${post.userId}`}>
+                            <small>Author</small>
+                        </Link>
+                    </Typography>
                 </Paper>
             ))}
         </Root>

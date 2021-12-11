@@ -5,6 +5,7 @@ import { User } from '../types/User';
 import { Link } from 'react-router-dom';
 import { BackendUrl } from '../Constants';
 import Paper from '../components/Paper';
+import { Typography } from '@mui/material';
 
 const Root = styled('div')``;
 
@@ -23,10 +24,18 @@ const UserList = () => {
         <Root>
             {users.map((user) => (
                 <Paper elevation={3} key={`userItem${user.id}`}>
-                    <Link to={`/users/${user.id}`}>{user.name}</Link>
+                    <Link to={`/users/${user.id}`}>
+                        <Typography variant="h6">
+                            <strong>{user.name}</strong>
+                        </Typography>
+                    </Link>
 
-                    <div>username: {user.username}</div>
-                    <div>email: {user.email}</div>
+                    <div>
+                        <strong>Username:</strong> {user.username}
+                    </div>
+                    <div>
+                        <strong>Mail:</strong> {user.email}
+                    </div>
                 </Paper>
             ))}
         </Root>

@@ -33,7 +33,9 @@ export const UserDetail = () => {
         <Root>
             {user && (
                 <Paper elevation={3} key={`userItem${user.id}`}>
-                    <Typography variant="h4">{user.name}</Typography>
+                    <Typography variant="h4">
+                        <strong>{user.name}</strong>
+                    </Typography>
                     <div>
                         <strong>Username:</strong> {user.username}
                     </div>
@@ -61,7 +63,9 @@ export const UserDetail = () => {
             {posts.map((post) => (
                 <Paper key={`postItem${post.id}`} elevation={3}>
                     <Typography variant="h6">
-                        <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        <strong>
+                            <Link to={`/posts/${post.id}`}>{post.title}</Link>
+                        </strong>
                     </Typography>
                     <div>{post.body}</div>
                 </Paper>
