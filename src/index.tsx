@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material';
+import { BrowserRouter } from 'react-router-dom';
 
-const customTheme = createTheme({
+let customTheme = createTheme({
     palette: {
         primary: {
             main: '#7fb220',
         },
     },
 });
+
+customTheme = responsiveFontSizes(customTheme);
+
 ReactDOM.render(
     <React.StrictMode>
-        <ThemeProvider theme={customTheme}>
-            <App />
-        </ThemeProvider>
+        <BrowserRouter>
+            <ThemeProvider theme={customTheme}>
+                <App />
+            </ThemeProvider>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );
