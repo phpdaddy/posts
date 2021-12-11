@@ -12,11 +12,11 @@ const UserList = () => {
     const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchUsers = async () => {
             const response = await axios.get(`${BackendUrl}/users`);
             setUsers(response.data);
         };
-        fetchPosts();
+        fetchUsers();
     }, []);
 
     return (
